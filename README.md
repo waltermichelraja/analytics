@@ -1,4 +1,4 @@
-| 🧩 Matcher / Method                                                           | 💡 What It Tests                                 | 💻 Code Snippet That Passes It                                                                                                                                                                                                                                  |
+|  Matcher / Method                                                           |  What It Tests                                 |  Code Snippet That Passes It                                                                                                                                                                                                                                  |
 | ----------------------------------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `getByText('Hello')`                                                          | Checks if “Hello” text exists                    | `jsx function App(){ return <p>Hello</p>; } `                                                                                                                                                                                                                   |
 | `getByRole('heading', { name: /contact us/i })`                               | Expects `<h1>Contact Us</h1>` to exist           | `jsx function App(){ return <h1>Contact Us</h1>; } `                                                                                                                                                                                                            |
@@ -18,7 +18,7 @@
 | `expect(container.querySelector('img')).toHaveAttribute('src', lightOnImage)` | Expects `<img>` source change after click        | `jsx function LightSwitch(){ return <img src={lightOnImage} alt="light" />; } `                                                                                                                                                                                 |
 
 
-| 🧩 Matcher / Method                                        | 💡 What It Tests / Expects                   | 💻 Minimal Code That Passes It                                           |
+|  Matcher / Method                                        |  What It Tests / Expects                   |  Minimal Code That Passes It                                           |
 | ---------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------ |
 | `getByText('Hello')`                                       | Looks for text “Hello” on screen             | `jsx function App(){ return <p>Hello</p>; }`                             |
 | `getByRole('heading', { level: 1 })`                       | Expects an `<h1>` element                    | `jsx function App(){ return <h1>Contact Us</h1>; }`                      |
@@ -46,7 +46,7 @@
 | `getByText('No users available')`                          | Ensures fallback message                     | `jsx users.length===0 && <p>No users available</p>`                      |
 
 
-| 🧪 Test Type                   | 🔍 Meaning                                                         | Example                                                      |
+|  Test Type                   |  Meaning                                                         | Example                                                      |
 | ------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Static Render Test**         | Verifies elements are visible on first render                      | `expect(screen.getByText('User List')).toBeInTheDocument();` |
 | **Form Behavior Test**         | Checks input, submit, and reset behavior                           | `fireEvent.change`, `fireEvent.submit`                       |

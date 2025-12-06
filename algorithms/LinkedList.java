@@ -1,3 +1,5 @@
+package custom;
+
 class LinkedList{
     class Node{
         int val;
@@ -28,6 +30,36 @@ class LinkedList{
             head=n;
         }
         length++;
+    }
+    public boolean isEmpty(){return length==0;}
+    public Integer get(int index){
+        if(index<0||index>=length)return null;
+        Node cur;
+        if(index<length/2){
+            cur=head;
+            for(int i=0;i<index;i++)cur=cur.next;
+        }else{
+            cur=tail;
+            for(int i=length-1;i>index;i--)cur=cur.prev;
+        }
+        return cur.val;
+    }
+    public boolean removeAt(int index){
+        if(index<0||index>=length)return false;
+        if(index==0)return removeHead();
+        if(index==length-1)return removeTail();
+        Node cur;
+        if(index<length/2){
+            cur=head;
+            for(int i=0;i<index;i++)cur=cur.next;
+        }else{
+            cur=tail;
+            for(int i=length-1;i>index;i--)cur=cur.prev;
+        }
+        cur.prev.next=cur.next;
+        cur.next.prev=cur.prev;
+        length--;
+        return true;
     }
 }
 

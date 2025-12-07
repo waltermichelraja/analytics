@@ -61,5 +61,31 @@ class LinkedList{
         length--;
         return true;
     }
+    private boolean removeHead(){
+        if(head==null)return false;
+        if(head==tail){
+            head=null;
+            tail=null;
+            length=0;
+            return true;
+        }
+        head=head.next;
+        head.prev=null;
+        length--;
+        return true;
+    }
+    private boolean removeTail(){
+        if(tail==null)return false;
+        if(head==tail){
+            head=null;
+            tail=null;
+            length=0;
+            return true;
+        }
+        tail=tail.prev;
+        tail.next=null;
+        length--;
+        return true;
+    }
 }
 

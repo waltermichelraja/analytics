@@ -31,6 +31,19 @@ class LinkedList{
         }
         length++;
     }
+    private Node getNode(int index){
+        if(index<0||index>=length)return null;
+        Node cur;
+        if(index<length/2){
+            cur=head;
+            for(int i=0;i<index;i++)cur=cur.next;
+        }else{
+            cur=tail;
+            for(int i=length-1;i>index;i--)cur=cur.prev;
+        }
+        return cur;
+    }
+
     public boolean isEmpty(){return length==0;}
     public Integer get(int index){
         if(index<0||index>=length)return null;

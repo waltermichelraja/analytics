@@ -47,6 +47,17 @@ class BST{
         postorderRec(n.right);
         System.out.print(n.val+" ");
     }
+    private void levelOrderRec(){
+        if(root==null)return;
+        java.util.Queue<Node>q=new java.util.LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node c=q.poll();
+            System.out.print(c.val+" ");
+            if(c.left!=null)q.add(c.left);
+            if(c.right!=null)q.add(c.right);
+        }
+    }
 
     public void insert(int v){root=insertRec(root,v);}
 
@@ -57,5 +68,7 @@ class BST{
     public void preorder(){preorderRec(root);}
 
     public void postorder(){postorderRec(root);}
+
+    public void levelorder(){levelOrderRec();}
 }
 

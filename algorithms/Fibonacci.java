@@ -12,5 +12,9 @@ public class Fibonacci{
         memo[n]=fiboMemo(n-1)+fiboMemo(n-2);
         return memo[n];
     }
+    public static int fibo(int n) {
+        if(n<=1){return n;}
+        return fibo(n-1)+fibo(n-2);
+    }
 }
 

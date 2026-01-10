@@ -10,10 +10,6 @@ public class BaseConversion{
         }
         return bin;
     }
-    public static int decimalToBinaryRec(int n){
-        if(n==0){return 0;}
-        return decimalToBinaryRec(n/2)*10+(n%2);
-    }
 
     public static int binaryToDecimal(int bin){
         int dec=0;
@@ -25,10 +21,6 @@ public class BaseConversion{
             bin/=10;
         }
         return dec;
-    }
-    public static int binaryToDecimalRec(int bin){
-        if(bin==0){return 0;}
-        return (bin%10)+2*binaryToDecimalRec(bin/10);
     }
 
     public static int binaryToOctal(int bin){
@@ -47,17 +39,25 @@ public class BaseConversion{
         }
         return oct;
     }
-    public static int binaryToOctalRec(int bin){
-        if(bin==0){return 0;}
-        int group=0;
-        int power=1;
-        int temp=bin;
-        for(int i=0;i<3&&temp>0;i++){
-            group+=(temp%10)*power;
-            power*=2;
-            temp/=10;
+
+    public static int[] binaryToHex(int bin){
+        int[] temp=new int[32];
+        int index=0;
+        while(bin>0){
+            int group=0;
+            int power=1;
+            for(int i=0; i<4 && bin>0; i++){
+                group+=(bin%10)*power;
+                power*=2;
+                bin/=10;
+            }
+            temp[index++]=group;
         }
-        return binaryToOctalRec(bin/1000)*10+group;
+        int[] hex=new int[index];
+        for(int i=0; i<index; i++){
+            hex[i]=temp[index-1-i];
+        }
+        return hex;
     }
 }
 

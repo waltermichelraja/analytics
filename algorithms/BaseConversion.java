@@ -11,6 +11,18 @@ public class BaseConversion{
         return bin;
     }
 
+    public static int decimalToOctal(int n){
+        if(n==0){return 0;}
+        int oct=0;
+        int place=1;
+        while(n>0){
+            oct+=(n%8)*place;
+            place*=10;
+            n/=8;
+        }
+        return oct;
+    }
+
     public static int binaryToDecimal(int bin){
         int dec=0;
         int base=1;

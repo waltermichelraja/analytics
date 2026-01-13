@@ -52,6 +52,26 @@ public class BaseConversion{
         return oct;
     }
 
+    public static int octalToBinary(int oct){
+        if(oct==0){return 0;}
+        int bin=0;
+        int place=1;
+        while(oct>0){
+            int digit=oct%10;
+            int power=1;
+            int group=0;
+            for(int i=0;i<3;i++){
+                group+=(digit%2)*power;
+                power*=10;
+                digit/=2;
+            }
+            bin+=group*place;
+            place*=1000;
+            oct/=10;
+        }
+        return bin;
+    }
+
     public static int[] binaryToHex(int bin){
         int[] temp=new int[32];
         int index=0;

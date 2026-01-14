@@ -72,6 +72,18 @@ public class BaseConversion{
         return bin;
     }
 
+    public static int octalToDecimal(int oct){
+        int dec=0;
+        int base=1;
+        while(oct>0){
+            int last=oct%10;
+            dec+=last*base;
+            base*=8;
+            oct/=10;
+        }
+        return dec;
+    }
+
     public static int[] binaryToHex(int bin){
         int[] temp=new int[32];
         int index=0;

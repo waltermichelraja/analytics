@@ -84,6 +84,35 @@ public class BaseConversion{
         return dec;
     }
 
+    public static int hexToBinary(String hex){
+        int bin=0;
+        int place=1;
+        for(int i=hex.length()-1;i>=0;i--){
+            char c=hex.charAt(i);
+            int value;
+            if(c>='0'&&c<='9'){
+                value=c-'0';
+            }else if(c>='A'&&c<='F'){
+                value=c-'A'+10;
+            }else if(c>='a'&&c<='f'){
+                value=c-'a'+10;
+            }else{
+                throw new IllegalArgumentException("invalid hexadecimal character:"+c);
+            }
+            int group=0;
+            int power=1;
+            for(int j=0;j<4;j++){
+                group+=(value%2)*power;
+                power*=10;
+                value/=2;
+            }
+            bin+=group*place;
+            place*=10000;
+        }
+        return bin;
+    }
+
+
     public static int[] binaryToHex(int bin){
         int[] temp=new int[32];
         int index=0;

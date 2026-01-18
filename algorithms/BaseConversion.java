@@ -112,6 +112,27 @@ public class BaseConversion{
         return bin;
     }
 
+    public static int hexToDecimal(String hex){
+        int dec=0;
+        int base=1;
+        for(int i=hex.length()-1;i>=0;i--){
+            char c=hex.charAt(i);
+            int value;
+            if(c>='0'&&c<='9'){
+                value=c-'0';
+            }else if(c>='A'&&c<='F'){
+                value=c-'A'+10;
+            }else if(c>='a'&&c<='f'){
+                value=c-'a'+10;
+            }else{
+                throw new IllegalArgumentException("invalid hexadecimal character:"+c);
+            }
+            dec+=value*base;
+            base*=16;
+        }
+        return dec;
+    }
+
 
     public static int[] binaryToHex(int bin){
         int[] temp=new int[32];

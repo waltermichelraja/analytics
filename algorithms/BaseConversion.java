@@ -23,6 +23,23 @@ public class BaseConversion{
         return oct;
     }
 
+    public static String decimalToHex(int n){
+        if(n==0){return "0";}
+        String hex="";
+        while(n>0){
+            int rem=n%16;
+            char digit;
+            if(rem<10){
+                digit=(char)('0'+rem);
+            }else{
+                digit=(char)('A'+(rem-10));
+            }
+            hex=digit+hex;
+            n/=16;
+        }
+        return hex;
+    }
+
     public static int binaryToDecimal(int bin){
         int dec=0;
         int base=1;

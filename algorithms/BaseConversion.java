@@ -69,6 +69,26 @@ public class BaseConversion{
         return oct;
     }
 
+    public static int[] binaryToHex(int bin){
+        int[] temp=new int[32];
+        int index=0;
+        while(bin>0){
+            int group=0;
+            int power=1;
+            for(int i=0; i<4 && bin>0; i++){
+                group+=(bin%10)*power;
+                power*=2;
+                bin/=10;
+            }
+            temp[index++]=group;
+        }
+        int[] hex=new int[index];
+        for(int i=0; i<index; i++){
+            hex[i]=temp[index-1-i];
+        }
+        return hex;
+    }
+
     public static int octalToBinary(int oct){
         if(oct==0){return 0;}
         int bin=0;
@@ -99,6 +119,30 @@ public class BaseConversion{
             oct/=10;
         }
         return dec;
+    }
+
+    public static String octalToHex(int oct){
+        if(oct==0){return "0";}
+        int decimal=0;
+        int base=1;
+        while(oct>0){
+            decimal+=(oct%10)*base;
+            base*=8;
+            oct/=10;
+        }
+        String hex="";
+        while(decimal>0){
+            int rem=decimal%16;
+            char digit;
+            if(rem<10){
+                digit=(char)('0'+rem);
+            }else{
+                digit=(char)('A'+(rem-10));
+            }
+            hex=digit+hex;
+            decimal/=16;
+        }
+        return hex;
     }
 
     public static int hexToBinary(String hex){
@@ -148,27 +192,6 @@ public class BaseConversion{
             base*=16;
         }
         return dec;
-    }
-
-
-    public static int[] binaryToHex(int bin){
-        int[] temp=new int[32];
-        int index=0;
-        while(bin>0){
-            int group=0;
-            int power=1;
-            for(int i=0; i<4 && bin>0; i++){
-                group+=(bin%10)*power;
-                power*=2;
-                bin/=10;
-            }
-            temp[index++]=group;
-        }
-        int[] hex=new int[index];
-        for(int i=0; i<index; i++){
-            hex[i]=temp[index-1-i];
-        }
-        return hex;
     }
 }
 

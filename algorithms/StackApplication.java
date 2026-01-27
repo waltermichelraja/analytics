@@ -73,20 +73,14 @@ public class StackApplication{
         int i=expr.length()-1;
         while(i>=0){
             char c=expr.charAt(i);
-            if(c==' '){i--; continue;}
+            if(c==' '){i--;continue;}
             if(Character.isDigit(c)){
-                int num=0,base=1;
-                int start=i;
+                int num=0;
+                int base=1;
                 while(i>=0&&Character.isDigit(expr.charAt(i))){
                     num+=(expr.charAt(i)-'0')*base;
                     base*=10;
                     i--;
-                }
-                if(i>=0&&"+-*/^".indexOf(expr.charAt(i))!=-1&&start-i>1){
-                    for(int k=start;k>i;k--){
-                        st.push(expr.charAt(k)-'0');
-                    }
-                    continue;
                 }
                 st.push(num);
                 continue;
@@ -94,12 +88,36 @@ public class StackApplication{
             if(st.size()<2){throw new IllegalArgumentException("invalid prefix expression");}
             int a=st.pop();
             int b=st.pop();
-            st.push(apply(c, a, b));
+            st.push(apply(c,a,b));
             i--;
         }
         if(st.size()!=1){throw new IllegalArgumentException("invalid prefix expression");}
         return st.pop();
     }
 
+    static int evaluatePostfix(String expr){
+        Stack<Integer> st=new Stack<>();
+        int i=0;
+        while(i<expr.length()){
+            char c=expr.charAt(i);
+            if(c==' '){i++; continue;}
+            if(Character.isDigit(c)){
+                int num=0;
+                while(i<expr.length()&&Character.isDigit(expr.charAt(i))){
+                    num=num*10+(expr.charAt(i)-'0');
+                    i++;
+                }
+                st.push(num);
+                continue;
+            }
+            if(st.size()<2){throw new IllegalArgumentException("invalid postfix expression");}
+            int b=st.pop();
+            int a=st.pop();
+            st.push(apply(c,a,b));
+            i++;
+        }
+        if(st.size()!=1){throw new IllegalArgumentException("invalid postfix expression");}
+        return st.pop();
+    }
 }
 

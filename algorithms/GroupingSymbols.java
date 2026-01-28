@@ -20,5 +20,18 @@ public class GroupingSymbols{
         }
         return stack.isEmpty();
     }
+
+    public static int maxDepth(String s){
+        int depth=0, max=0;
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(ch=='('||ch=='{'||ch=='['){
+                depth++;
+                if(depth>max){max=depth;}
+            }
+            else if(ch==')'||ch=='}'||ch==']'){depth--;}
+        }
+        return max;
+    }
 }
 

@@ -33,5 +33,26 @@ public class GroupingSymbols{
         }
         return max;
     }
+
+    public static String sanitize(String s){
+        Stack<Integer> stack=new Stack<>();
+        boolean[] valid=new boolean[s.length()];
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(ch=='('){stack.push(i);}
+            else if(ch==')'){
+                if(!stack.isEmpty()){
+                    int j=stack.pop();
+                    valid[i]=true;
+                    valid[j]=true;
+                }
+            }
+        }
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            if(valid[i]||!(s.charAt(i)=='('||s.charAt(i)==')')){sb.append(s.charAt(i));}
+        }
+        return sb.toString();
+    }
 }
 

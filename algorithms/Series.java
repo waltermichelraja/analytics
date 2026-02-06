@@ -1,6 +1,16 @@
 import java.util.*;
 
 public class Series{
+    public static int apTerm(int a, int d, int n){
+        return a+(n-1)*d;
+    }
+
+    public static int gpTerm(int a, int r, int n){
+        int res=1;
+        for(int i=1;i<n;i++){res*=r;}
+        return a*res;
+    }
+
     static int[] memo;
     public static int fiboMemo(int n){
         if(n<=1)return n;

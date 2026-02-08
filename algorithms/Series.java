@@ -56,5 +56,16 @@ public class Series{
         }
         return dp[n];
     }
+    public static int lucas(int n){
+        if(n==0){return 2;}
+        if(n==1){return 1;}
+        int a=2,b=1;
+        for(int i=2;i<=n;i++){
+            int c=a+b;
+            a=b;
+            b=c;
+        }
+        return b;
+    }
 }
 

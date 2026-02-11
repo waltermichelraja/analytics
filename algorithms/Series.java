@@ -1,16 +1,6 @@
 import java.util.*;
 
 public class Series{
-    public static int apTerm(int a, int d, int n){
-        return a+(n-1)*d;
-    }
-
-    public static int gpTerm(int a, int r, int n){
-        int res=1;
-        for(int i=1;i<n;i++){res*=r;}
-        return a*res;
-    }
-
     static int[] memo;
     public static int fiboMemo(int n){
         if(n<=1)return n;
@@ -33,49 +23,85 @@ public class Series{
         if(n<=1){return n;}
         return fibo(n-1)+fibo(n-2);
     }
-    public static int uglyNumberTab(int n){
-        int[] dp=new int[n];
-        dp[0]=1;
-        int i2=0,i3=0,i5=0;
-        for(int i=1;i<n;i++){
-            int next=Math.min(dp[i2]*2, Math.min(dp[i3]*3, dp[i5]*5));
-            dp[i]=next;
-            if(next==dp[i2]*2){i2++;}
-            if(next==dp[i3]*3){i3++;}
-            if(next==dp[i5]*5){i5++;}
+    public static long[] fibonacci(int n){
+        long[] res=new long[n];
+        if(n==0){return res;}
+        res[0]=0;
+        if(n==1){return res;}
+        res[1]=1;
+        for(int i=2;i<n;i++){
+            res[i]=res[i-1]+res[i-2];
         }
-        return dp[n-1];
+        return res;
     }
-    public static int catalan(int n){
-        int[] dp=new int[n+1];
-        dp[0]=1;
-        for(int i=1;i<=n;i++){
+
+    public static int[] ap(int a, int d, int n){
+        int[] res=new int[n];
+        for(int i=0;i<n;i++){
+            res[i]=a+i*d;
+        }
+        return res;
+    }
+
+    public static long[] gp(long a, long r, int n){
+        long[] res=new long[n];
+        long curr=a;
+        for(int i=0;i<n;i++){
+            res[i]=curr;
+            curr*=r;
+        }
+        return res;
+    }
+
+    public static long[] lucas(int n){
+        long[] res=new long[n];
+        if(n==0){return res;}
+        res[0]=2;
+        if(n==1){return res;}
+        res[1]=1;
+        for(int i=2;i<n;i++){
+            res[i]=res[i-1]+res[i-2];
+        }
+        return res;
+    }
+
+    public static long[] pell(int n){
+        long[] res=new long[n];
+        if(n==0){return res;}
+        res[0]=0;
+        if(n==1){return res;}
+        res[1]=1;
+        for(int i=2;i<n;i++){
+            res[i]=2*res[i-1]+res[i-2];
+        }
+        return res;
+    }
+
+    public static long[] catalan(int n){
+        long[] res=new long[n];
+        if(n==0)return res;
+        res[0]=1;
+        for(int i=1;i<n;i++){
+            res[i]=0;
             for(int j=0;j<i;j++){
-                dp[i]+=dp[j]*dp[i-j-1];
+                res[i]+=res[j]*res[i-j-1];
             }
         }
-        return dp[n];
+        return res;
     }
-    public static int lucas(int n){
-        if(n==0){return 2;}
-        if(n==1){return 1;}
-        int a=2,b=1;
-        for(int i=2;i<=n;i++){
-            int c=a+b;
-            a=b;
-            b=c;
+
+    public static long[] uglyNumbers(int n){
+        long[] res=new long[n];
+        res[0]=1;
+        int i2=0,i3=0,i5=0;
+        for(int i=1;i<n;i++){
+            long next=Math.min(res[i2]*2, Math.min(res[i3]*3, res[i5]*5));
+            res[i]=next;
+            if(next==res[i2]*2){i2++;}
+            if(next==res[i3]*3){i3++;}
+            if(next==res[i5]*5){i5++;}
         }
-        return b;
-    }
-    public static int pell(int n){
-        if(n<=1){return n;}
-        int a=0,b=1;
-        for(int i=2;i<=n;i++){
-            int c=2*b+a;
-            a=b;
-            b=c;
-        }
-        return b;
+        return res;
     }
 }
 

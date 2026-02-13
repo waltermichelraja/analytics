@@ -105,7 +105,7 @@ public class Series{
     }
 
     public static boolean isPerfect(long n){
-        if(n<2)return false;
+        if(n<2){return false;}
         long sum=1;
         for(long i=2;i*i<=n;i++){
             if(n%i==0){
@@ -114,6 +114,17 @@ public class Series{
             }
         }
         return sum==n;
+    }
+
+    public static boolean isArmstrong(long x){
+        long temp=x,sum=0;
+        long d=(long)Math.log10(x)+1;
+        while(temp>0){
+            long r=temp%10;
+            sum+=Math.pow(r,d);
+            temp/=10;
+        }
+        return sum==x;
     }
 }
 
